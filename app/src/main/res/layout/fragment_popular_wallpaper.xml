@@ -1,0 +1,168 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_main_background"
+    tools:context="com.swedaiaiwallpapersart.backgroundanimewallpaperaiphoto.fragments.PopularWallpaperFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/new_main_background"
+        android:id="@+id/topBar"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            android:layout_height="wrap_content">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/sliderPager"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_height="@dimen/_150sdp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/layoutOnboardingIndicators"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="7dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sliderPager" />
+
+
+            <TextView
+                android:id="@+id/trendingHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trending"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="#FFFFFF"
+                android:shadowColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                android:shadowDx="0"
+                app:layout_constraintTop_toBottomOf="@id/layoutOnboardingIndicators"
+                android:shadowDy="0"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:shadowRadius="10" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/trendingHeading"
+                app:layout_constraintBottom_toBottomOf="@id/trendingHeading"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center"
+                android:id="@+id/more"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/more"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/button_bg"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    />
+
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon"
+                    android:padding="@dimen/_5sdp"
+                    />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/trendingHeading"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_item_trending_hroizontal"
+                android:id="@+id/recyclerviewTrending"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_centerInParent="true"
+            app:lottie_autoPlay="true"
+            android:translationZ="@dimen/_10sdp"
+            app:lottie_loop="true"
+            android:visibility="gone"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="@id/recyclerviewTrending"
+            app:layout_constraintEnd_toEndOf="@id/recyclerviewTrending"
+            app:layout_constraintTop_toTopOf="@id/recyclerviewTrending"
+            app:layout_constraintBottom_toBottomOf="@id/recyclerviewTrending"
+            />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        android:id="@+id/refresh"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <TextView
+                android:id="@+id/wallpaper4kHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4k Wallpapers"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="#FFFFFF"
+                android:shadowColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:shadowRadius="10" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewMostUsed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/wallpaper4kHeading"
+                tools:listitem="@layout/wallpaper_row"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
